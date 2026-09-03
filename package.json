@@ -1,0 +1,33 @@
+{
+  "name": "nool-credit",
+  "version": "1.0.0",
+  "description": "Nool Credit - One Platform. Smarter Financing. Faster Growth.",
+  "scripts": {
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "cd server && npm start",
+    "client": "cd frontend && npm run dev",
+    "seed": "cd server && npm run seed",
+    "postinstall": "cd server && npm install && cd ../frontend && npm install",
+    "install:all": "npm install",
+    "build": "cd frontend && npm run build",
+    "preview": "cd frontend && npm run preview",
+    "zip": "powershell -Command \"Compress-Archive -Path * -DestinationPath ../nool-credit.zip -Force\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "keywords": [
+    "fintech",
+    "msme",
+    "invoice-financing",
+    "express",
+    "mongodb",
+    "react",
+    "framer-motion",
+    "recharts",
+    "i18n"
+  ],
+  "author": "Nool Credit Engineering",
+  "license": "MIT"
+}
