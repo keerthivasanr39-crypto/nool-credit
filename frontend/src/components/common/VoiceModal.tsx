@@ -5,26 +5,60 @@ import { useTranslation } from 'react-i18next';
 import { useApp } from '../../context/AppContext';
 
 export const VoiceModal: React.FC = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { isVoiceOpen, closeVoice } = useApp();
   const [voiceState, setVoiceState] = useState<'IDLE' | 'LISTENING' | 'PROCESSING' | 'RESPONDING'>('IDLE');
   const [transcript, setTranscript] = useState<string>('');
   const [response, setResponse] = useState<string>('');
 
-  const SAMPLE_QUERIES = [
-    {
-      q: 'How can I finance my invoice?',
-      a: 'Based on your prototype data, upload your invoice, verify GST details, bundle eligible invoices into a pool, and submit for instant lender review. You may be eligible for up to 85% advance.'
-    },
-    {
-      q: 'What is my current credit score?',
-      a: 'Your current NOOL Credit Readiness score is 86/100 (Low Risk). Your profile has strong buyer reliability (19/20) and consistent transaction track record.'
-    },
-    {
-      q: 'How does invoice bundling work?',
-      a: 'Invoice bundling groups multiple verified invoices into a single diversified financing pool (e.g. POOL-1001), helping lower risk and maximize lender approval probability.'
-    }
-  ];
+  const currentLang = i18n.language?.startsWith('ta') ? 'ta' : i18n.language?.startsWith('hi') ? 'hi' : 'en';
+
+  const MULTILINGUAL_QUERIES: Record<string, { q: string; a: string }[]> = {
+    en: [
+      {
+        q: 'How can I finance my invoice?',
+        a: 'Based on your prototype data, upload your invoice, verify GST details, bundle eligible invoices into a pool, and submit for instant lender review. You may be eligible for up to 85% advance.'
+      },
+      {
+        q: 'What is my current credit score?',
+        a: 'Your current NOOL Credit Readiness score is 86/100 (Low Risk). Your profile has strong buyer reliability (19/20) and consistent transaction track record.'
+      },
+      {
+        q: 'How does invoice bundling work?',
+        a: 'Invoice bundling groups multiple verified invoices into a single diversified financing pool (e.g. POOL-1001), helping lower risk and maximize lender approval probability.'
+      }
+    ],
+    ta: [
+      {
+        q: 'என் இன்வாய்ஸுக்கு எவ்வாறு நிதி பெறலாம்?',
+        a: 'உங்கள் விலைப்பட்டியலைப் பதிவேற்றி, GST விவரங்களை சரிபார்த்து, தகுதியான இன்வாய்ஸ்களை ஒரு தொகுப்பாக (Pool) மாற்றி கடன் வழங்குநரிடம் சமர்ப்பிக்கவும். உங்களுக்கு 85% வரை உடனடி நிதி கிடைக்கும்.'
+      },
+      {
+        q: 'எனது தற்போதைய கிரெடிட் ஸ்கோர் என்ன?',
+        a: 'உங்கள் தற்போதைய நூல் கிரெடிட் ஸ்கோர் 86/100 (குறைந்த இடர்). உங்கள் வாங்குபவர் நம்பகத்தன்மை மற்றும் கட்டண வரலாறு மிகச் சிறப்பாக உள்ளது.'
+      },
+      {
+        q: 'இன்வாய்ஸ் தொகுப்பது (Bundling) எப்படி?',
+        a: 'இன்வாய்ஸ் பண்ட்லிங் என்பது பல சிறிய இன்வாய்ஸ்களை ஒரே கூட்டுத் தொகுப்பாக மாற்றுவதாகும் (எ.கா. POOL-1001). இது இடரைக் குறைத்து விரைவான நிதி அனுமதியைப் பெற உதவுகிறது.'
+      }
+    ],
+    hi: [
+      {
+        q: 'मैं अपने इनवॉइस पर वित्तपोषण कैसे प्राप्त करूँ?',
+        a: 'अपना इनवॉइस अपलोड करें, जीएसटी विवरण सत्यापित करें, पात्र इनवॉइस को एक पूल में बंडल करें और तत्काल ऋणदाता समीक्षा के लिए सबमिट करें। आप 85% तक अग्रिम राशि के पात्र हो सकते हैं।'
+      },
+      {
+        q: 'मेरा वर्तमान क्रेडिट स्कोर क्या है?',
+        a: 'आपका वर्तमान नूल क्रेडिट स्कोर 86/100 (कम जोखिम) है। आपकी प्रोफ़ाइल में खरीदार विश्वसनीयता और भुगतान इतिहास बहुत मजबूत है।'
+      },
+      {
+        q: 'इनवॉइस बंडलिंग कैसे काम करती है?',
+        a: 'इनवॉइस बंडलिंग कई सत्यापित इनवॉइस को एक विविध वित्तीय पूल में समूहीकृत करती है (जैसे POOL-1001), जिससे जोखिम कम होता है और ऋणदाता स्वीकृति की संभावना बढ़ जाती है।'
+      }
+    ]
+  };
+
+  const sampleQueries = MULTILINGUAL_QUERIES[currentLang] || MULTILINGUAL_QUERIES.en;
 
   useEffect(() => {
     if (!isVoiceOpen) {
@@ -38,8 +72,9 @@ export const VoiceModal: React.FC = () => {
     if ('speechSynthesis' in window) {
       window.speechSynthesis.cancel();
       const utterance = new SpeechSynthesisUtterance(text);
-      utterance.rate = 1.0;
+      utterance.rate = 0.95;
       utterance.pitch = 1.0;
+      utterance.lang = currentLang === 'ta' ? 'ta-IN' : currentLang === 'hi' ? 'hi-IN' : 'en-IN';
       window.speechSynthesis.speak(utterance);
     }
   };
@@ -49,10 +84,9 @@ export const VoiceModal: React.FC = () => {
     setTranscript('');
     setResponse('');
 
-    // Simulate listening audio duration
     setTimeout(() => {
       setVoiceState('PROCESSING');
-      const selected = SAMPLE_QUERIES[Math.floor(Math.random() * SAMPLE_QUERIES.length)];
+      const selected = sampleQueries[Math.floor(Math.random() * sampleQueries.length)];
       setTranscript(selected.q);
 
       setTimeout(() => {
@@ -151,7 +185,7 @@ export const VoiceModal: React.FC = () => {
                   {voiceState === 'IDLE' && t('voice.speakPrompt')}
                   {voiceState === 'LISTENING' && t('voice.listening')}
                   {voiceState === 'PROCESSING' && t('voice.processing')}
-                  {voiceState === 'RESPONDING' && 'Response ready'}
+                  {voiceState === 'RESPONDING' && (currentLang === 'ta' ? 'பதில் தயார்' : currentLang === 'hi' ? 'उत्तर तैयार है' : 'Response ready')}
                 </span>
               </div>
             </div>
@@ -159,7 +193,9 @@ export const VoiceModal: React.FC = () => {
             {/* Transcript & Response Area */}
             {transcript && (
               <div className="w-full bg-slate-50 border border-slate-200/80 rounded-2xl p-4 my-3 text-left">
-                <div className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">You Asked</div>
+                <div className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">
+                  {currentLang === 'ta' ? 'நீங்கள் கேட்டது' : currentLang === 'hi' ? 'आपने पूछा' : 'You Asked'}
+                </div>
                 <div className="text-sm font-semibold text-slate-800 mb-3 flex items-center gap-1.5">
                   <MessageSquare className="w-4 h-4 text-brand-600" />
                   "{transcript}"
@@ -168,7 +204,8 @@ export const VoiceModal: React.FC = () => {
                 {response && (
                   <div className="border-t border-slate-200/70 pt-3">
                     <div className="text-xs font-bold text-brand-600 uppercase tracking-wider mb-1 flex items-center gap-1">
-                      <Sparkles className="w-3.5 h-3.5 text-amber-500" /> NOOL VOICE Response
+                      <Sparkles className="w-3.5 h-3.5 text-amber-500" />
+                      {currentLang === 'ta' ? 'நூல் வாய்ஸ் பதில்' : currentLang === 'hi' ? 'नूल वॉइस उत्तर' : 'NOOL VOICE Response'}
                     </div>
                     <p className="text-xs text-slate-700 leading-relaxed font-medium bg-white p-3 rounded-xl border border-slate-100 shadow-xs">
                       {response}
@@ -184,7 +221,7 @@ export const VoiceModal: React.FC = () => {
                 {t('voice.tryAsking')}
               </div>
               <div className="space-y-1.5">
-                {SAMPLE_QUERIES.map((sample, idx) => (
+                {sampleQueries.map((sample, idx) => (
                   <button
                     key={idx}
                     onClick={() => handleSelectSample(sample)}

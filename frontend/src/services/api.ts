@@ -263,6 +263,18 @@ const setStored = <T>(key: string, value: T): void => {
 export const api = {
   // Invoices
   getInvoices: async (): Promise<Invoice[]> => {
+    try {
+      const res = await fetch(`${API_BASE}/invoices`);
+      if (res.ok) {
+        const data = await res.json();
+        if (Array.isArray(data) && data.length > 0) {
+          setStored('invoices', data);
+          return data;
+        }
+      }
+    } catch (e) {
+      console.warn('Backend fetch failed, using local invoices:', e);
+    }
     return getStored('invoices', INITIAL_INVOICES);
   },
 
@@ -289,6 +301,22 @@ export const api = {
       fraudAlerts: invoice.fraudAlerts || [],
       createdAt: new Date().toISOString()
     };
+
+    // Save directly to MongoDB Atlas via Express backend!
+    try {
+      const res = await fetch(`${API_BASE}/invoices`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newInv)
+      });
+      if (res.ok) {
+        const savedData = await res.json();
+        console.log('✅ Successfully persisted invoice to MongoDB Atlas:', savedData);
+      }
+    } catch (err) {
+      console.warn('Backend write failed, saving locally:', err);
+    }
+
     const updated = [newInv, ...list];
     setStored('invoices', updated);
     return newInv;

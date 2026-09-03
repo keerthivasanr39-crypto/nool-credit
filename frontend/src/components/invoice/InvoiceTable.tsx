@@ -21,7 +21,59 @@ export const InvoiceTable: React.FC<InvoiceTableProps> = ({
   onSelectToggle,
   onSelectAll
 }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const currentLang = i18n.language?.startsWith('ta') ? 'ta' : i18n.language?.startsWith('hi') ? 'hi' : 'en';
+
+  const HEADERS = {
+    en: {
+      search: 'Search by invoice number or buyer name...',
+      riskFilter: 'Risk Filter:',
+      all: 'All Invoices',
+      low: 'Low Risk',
+      med: 'Medium Risk',
+      high: 'High Risk',
+      invNo: 'Invoice No',
+      buyer: 'Buyer Entity',
+      amount: 'Invoice Amount',
+      dueDate: 'Due Date',
+      riskScore: 'Risk Score',
+      status: 'Status',
+      eligible: 'Eligible Financing'
+    },
+    ta: {
+      search: 'இன்வாய்ஸ் எண் அல்லது வாங்குபவர் பெயரைத் தேடவும்...',
+      riskFilter: 'இடர் வடிகட்டி:',
+      all: 'அனைத்து இன்வாய்ஸ்கள்',
+      low: 'குறைந்த இடர்',
+      med: 'நடுத்தர இடர்',
+      high: 'அதிக இடர்',
+      invNo: 'இன்வாய்ஸ் எண்',
+      buyer: 'வாங்குபவர் பெயர்',
+      amount: 'இன்வாய்ஸ் தொகை',
+      dueDate: 'கெடு தேதி',
+      riskScore: 'இடர் மதிப்பீடு',
+      status: 'நிலை',
+      eligible: 'தகுதியான நிதி'
+    },
+    hi: {
+      search: 'इनवॉइस संख्या या खरीदार नाम से खोजें...',
+      riskFilter: 'जोखिम फ़िल्टर:',
+      all: 'सभी इनवॉइस',
+      low: 'कम जोखिम',
+      med: 'मध्यम जोखिम',
+      high: 'उच्च जोखिम',
+      invNo: 'इनवॉइस संख्या',
+      buyer: 'खरीदार संस्था',
+      amount: 'इनवॉइस राशि',
+      dueDate: 'अंतिम तिथि',
+      riskScore: 'जोखिम स्कोर',
+      status: 'स्थिति',
+      eligible: 'पात्र वित्तपोषण'
+    }
+  };
+
+  const h = HEADERS[currentLang] || HEADERS.en;
+
   const [searchTerm, setSearchTerm] = useState('');
   const [filterRisk, setFilterRisk] = useState<string>('ALL');
 
@@ -45,7 +97,7 @@ export const InvoiceTable: React.FC<InvoiceTableProps> = ({
           <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
           <input
             type="text"
-            placeholder="Search by invoice number or buyer name..."
+            placeholder={h.search}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="w-full pl-9 pr-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-brand-500/20 text-slate-800"
@@ -54,17 +106,17 @@ export const InvoiceTable: React.FC<InvoiceTableProps> = ({
 
         <div className="flex items-center gap-2 text-xs">
           <span className="text-slate-400 flex items-center gap-1 font-medium">
-            <Filter className="w-3.5 h-3.5" /> Risk Filter:
+            <Filter className="w-3.5 h-3.5" /> {h.riskFilter}
           </span>
           <select
             value={filterRisk}
             onChange={(e) => setFilterRisk(e.target.value)}
             className="px-2.5 py-1.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold text-slate-700 focus:bg-white"
           >
-            <option value="ALL">All Invoices</option>
-            <option value="LOW">Low Risk</option>
-            <option value="MEDIUM">Medium Risk</option>
-            <option value="HIGH">High Risk</option>
+            <option value="ALL">{h.all}</option>
+            <option value="LOW">{h.low}</option>
+            <option value="MEDIUM">{h.med}</option>
+            <option value="HIGH">{h.high}</option>
           </select>
         </div>
       </div>
@@ -84,13 +136,13 @@ export const InvoiceTable: React.FC<InvoiceTableProps> = ({
                   />
                 </th>
               )}
-              <th className="py-3.5 px-4">Invoice No</th>
-              <th className="py-3.5 px-4">Buyer Entity</th>
-              <th className="py-3.5 px-4">Invoice Amount</th>
-              <th className="py-3.5 px-4">Due Date</th>
-              <th className="py-3.5 px-4">Risk Score</th>
-              <th className="py-3.5 px-4">Status</th>
-              <th className="py-3.5 px-4 text-right">Eligible Financing</th>
+              <th className="py-3.5 px-4">{h.invNo}</th>
+              <th className="py-3.5 px-4">{h.buyer}</th>
+              <th className="py-3.5 px-4">{h.amount}</th>
+              <th className="py-3.5 px-4">{h.dueDate}</th>
+              <th className="py-3.5 px-4">{h.riskScore}</th>
+              <th className="py-3.5 px-4">{h.status}</th>
+              <th className="py-3.5 px-4 text-right">{h.eligible}</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-slate-100">

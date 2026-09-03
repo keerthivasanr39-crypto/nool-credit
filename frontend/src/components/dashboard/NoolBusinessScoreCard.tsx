@@ -1,23 +1,81 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { ShieldCheck, TrendingUp, CheckCircle2, ArrowRight, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export const NoolBusinessScoreCard: React.FC = () => {
-  const score = 84;
-  const categories = [
-    { name: 'Profile Completeness', score: 18, max: 20, pct: 90, color: 'bg-emerald-500' },
-    { name: 'Document Verification', score: 20, max: 20, pct: 100, color: 'bg-emerald-600' },
-    { name: 'Invoice Reliability', score: 18, max: 20, pct: 90, color: 'bg-brand-600' },
-    { name: 'Payment History', score: 15, max: 20, pct: 75, color: 'bg-amber-500' },
-    { name: 'Business Activity', score: 13, max: 20, pct: 65, color: 'bg-indigo-500' },
-  ];
+  const { i18n } = useTranslation();
+  const currentLang = i18n.language?.startsWith('ta') ? 'ta' : i18n.language?.startsWith('hi') ? 'hi' : 'en';
 
-  const recommendations = [
-    'Upload latest Q2 audited bank statement (+3 pts)',
-    'Add 2 more verified buyer purchase orders (+5 pts)',
-    'Maintain 100% on-time settlement record with ABC Garments',
-  ];
+  const score = 84;
+
+  const TRANSLATIONS = {
+    en: {
+      title: 'NOOL BUSINESS SCORE',
+      subtitle: 'Comprehensive MSME Financial & Operational Health Engine',
+      health: 'EXCELLENT HEALTH',
+      lowRisk: 'Low Risk',
+      higherThan: 'Higher than 82% of regional textile MSMEs',
+      actionableTitle: 'Actionable Ways to Reach 90+ Score:',
+      categories: [
+        { name: 'Profile Completeness', score: 18, max: 20, pct: 90, color: 'bg-emerald-500' },
+        { name: 'Document Verification', score: 20, max: 20, pct: 100, color: 'bg-emerald-600' },
+        { name: 'Invoice Reliability', score: 18, max: 20, pct: 90, color: 'bg-brand-600' },
+        { name: 'Payment History', score: 15, max: 20, pct: 75, color: 'bg-amber-500' },
+        { name: 'Business Activity', score: 13, max: 20, pct: 65, color: 'bg-indigo-500' },
+      ],
+      recommendations: [
+        'Upload latest Q2 audited bank statement (+3 pts)',
+        'Add 2 more verified buyer purchase orders (+5 pts)',
+        'Maintain 100% on-time settlement record with ABC Garments',
+      ]
+    },
+    ta: {
+      title: 'நூல் பிசினஸ் ஸ்கோர்',
+      subtitle: 'முழுமையான MSME நிதி மற்றும் செயல்பாட்டு ஆரோக்கிய மதிப்பீடு',
+      health: 'சிறந்த நிதி ஆரோக்கியம்',
+      lowRisk: 'குறைந்த இடர்',
+      higherThan: 'பிராந்திய ஜவுளி MSME-களில் 82%-ஐ விட உயர்ந்தது',
+      actionableTitle: '90+ மதிப்பெண்ணை எட்டுவதற்கான நடைமுறை வழிகள்:',
+      categories: [
+        { name: 'சுயவிவர முழுமை', score: 18, max: 20, pct: 90, color: 'bg-emerald-500' },
+        { name: 'ஆவண சரிபார்ப்பு', score: 20, max: 20, pct: 100, color: 'bg-emerald-600' },
+        { name: 'இன்வாய்ஸ் நம்பகத்தன்மை', score: 18, max: 20, pct: 90, color: 'bg-brand-600' },
+        { name: 'கட்டண வரலாறு', score: 15, max: 20, pct: 75, color: 'bg-amber-500' },
+        { name: 'வணிக நடவடிக்கை', score: 13, max: 20, pct: 65, color: 'bg-indigo-500' },
+      ],
+      recommendations: [
+        'சமீபத்திய வங்கி கணக்கு அறிக்கையை பதிவேற்றவும் (+3 புள்ளிகள்)',
+        'மேலும் 2 சரிபார்க்கப்பட்ட வாங்குபவர் ஆர்டர்களைச் சேர்க்கவும் (+5 புள்ளிகள்)',
+        'ABC Garments-உடன் 100% சரியான நேரக் கொடுப்பனவைப் பராமரிக்கவும்',
+      ]
+    },
+    hi: {
+      title: 'नूल बिज़नेस स्कोर',
+      subtitle: 'व्यापक MSME वित्तीय और परिचालन स्वास्थ्य इंजन',
+      health: 'उत्कृष्ट वित्तीय स्थिति',
+      lowRisk: 'कम जोखिम',
+      higherThan: 'क्षेत्रीय कपड़ा MSME के 82% से अधिक',
+      actionableTitle: '90+ स्कोर तक पहुँचने के व्यावहारिक तरीके:',
+      categories: [
+        { name: 'प्रोफ़ाइल पूर्णता', score: 18, max: 20, pct: 90, color: 'bg-emerald-500' },
+        { name: 'दस्तावेज़ सत्यापन', score: 20, max: 20, pct: 100, color: 'bg-emerald-600' },
+        { name: 'इनवॉइस विश्वसनीयता', score: 18, max: 20, pct: 90, color: 'bg-brand-600' },
+        { name: 'भुगतान इतिहास', score: 15, max: 20, pct: 75, color: 'bg-amber-500' },
+        { name: 'व्यावसायिक गतिविधि', score: 13, max: 20, pct: 65, color: 'bg-indigo-500' },
+      ],
+      recommendations: [
+        'नवीनतम Q2 ऑडिट किया गया बैंक विवरण अपलोड करें (+3 अंक)',
+        '2 और सत्यापित खरीदार खरीद आदेश जोड़ें (+5 अंक)',
+        'ABC Garments के साथ 100% समय पर निपटान रिकॉर्ड बनाए रखें',
+      ]
+    }
+  };
+
+  const text = TRANSLATIONS[currentLang] || TRANSLATIONS.en;
+  const categories = text.categories;
+  const recommendations = text.recommendations;
 
   return (
     <div className="bg-white rounded-3xl p-6 sm:p-7 border border-slate-200/80 shadow-sm space-y-6">
@@ -28,16 +86,16 @@ export const NoolBusinessScoreCard: React.FC = () => {
           </div>
           <div>
             <h3 className="text-base font-extrabold text-slate-900">
-              NOOL BUSINESS SCORE
+              {text.title}
             </h3>
             <p className="text-xs text-slate-400">
-              Comprehensive MSME Financial & Operational Health Engine
+              {text.subtitle}
             </p>
           </div>
         </div>
 
         <span className="text-xs font-extrabold text-emerald-700 bg-emerald-50 border border-emerald-200 px-3 py-1 rounded-full">
-          EXCELLENT HEALTH
+          {text.health}
         </span>
       </div>
 
@@ -81,12 +139,12 @@ export const NoolBusinessScoreCard: React.FC = () => {
               </motion.span>
               <span className="text-[11px] text-slate-400 font-semibold mt-0.5">/ 100</span>
               <span className="text-[10px] font-bold text-emerald-600 uppercase tracking-wider mt-1">
-                Low Risk
+                {text.lowRisk}
               </span>
             </div>
           </div>
           <p className="text-[11px] text-slate-500 mt-2 font-medium">
-            Higher than 82% of regional textile MSMEs
+            {text.higherThan}
           </p>
         </div>
 
@@ -117,7 +175,7 @@ export const NoolBusinessScoreCard: React.FC = () => {
       <div className="p-4 bg-brand-50/60 rounded-2xl border border-brand-100 space-y-2">
         <div className="text-xs font-bold text-brand-900 flex items-center gap-1.5">
           <TrendingUp className="w-4 h-4 text-brand-600" />
-          <span>Actionable Ways to Reach 90+ Score:</span>
+          <span>{text.actionableTitle}</span>
         </div>
         <div className="space-y-1.5 text-xs text-brand-800">
           {recommendations.map((rec, i) => (

@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NOOL CREDIT — Hackathon Pitch Deck</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #0B132B; color: #fff; overflow: hidden; }
+    .display-font { font-family: 'Space Grotesk', sans-serif; }
+    .slide { display: none; height: 100vh; width: 100vw; }
+    .slide.active { display: flex; flex-direction: column; justify-content: space-between; }
+    .glass-card { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); }
+    .gradient-text { background: linear-gradient(135deg, #60A5FA 0%, #34D399 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .gold-gradient { background: linear-gradient(135deg, #FCD34D 0%, #F59E0B 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  </style>
+</head>
+<body class="relative select-none">
+
+  <!-- Top Progress Bar -->
+  <div class="fixed top-0 left-0 w-full h-1.5 bg-slate-800 z-50">
+    <div id="progress-bar" class="h-full bg-gradient-to-r from-blue-500 to-emerald-400 transition-all duration-300 w-[10%]"></div>
+  </div>
+
+  <!-- Top Navigation Header -->
+  <header class="fixed top-2 left-6 right-6 flex items-center justify-between z-40 py-2 border-b border-white/10">
+    <div class="flex items-center gap-2">
+      <div class="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center font-bold text-white text-sm">NC</div>
+      <span class="font-extrabold text-sm tracking-wider uppercase">NOOL <span class="text-blue-400">CREDIT</span></span>
+    </div>
+    <div class="flex items-center gap-4 text-xs text-slate-400">
+      <span>VIT Hackathon Pitch</span>
+      <span id="slide-counter" class="font-bold text-white px-2 py-0.5 rounded bg-white/10">Slide 1 / 10</span>
+    </div>
+  </header>
+
+  <!-- Slide 1: Cover Slide -->
+  <section class="slide active p-12 sm:p-20" data-slide="1">
+    <div></div>
+    <div class="max-w-4xl mx-auto text-center space-y-6">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-xs font-semibold uppercase tracking-wider">
+        🚀 Problem Statement 3 & 4 • MSME Working Capital & Resilience
+      </div>
+      <h1 class="text-5xl sm:text-7xl font-extrabold display-font tracking-tight">
+        NOOL <span class="gradient-text">CREDIT</span>
+      </h1>
+      <p class="text-xl sm:text-2xl text-slate-300 font-medium">
+        Turn Pending Invoices Into Working Capital
+      </p>
+      <p class="text-sm text-slate-400 max-w-2xl mx-auto leading-relaxed">
+        An Institutional FinTech Platform for MSMEs with Explainable AI Risk Assessment, Invoice Pooling, and 3-Layer Anti-Fraud Protection.
+      </p>
+      
+      <!-- Team Members -->
+      <div class="pt-8">
+        <div class="text-xs uppercase tracking-widest text-slate-500 font-bold mb-3">PRESENTED BY TEAM</div>
+        <div class="flex flex-wrap items-center justify-center gap-3">
+          <span class="px-4 py-2 rounded-xl bg-white/10 border border-white/15 text-sm font-bold text-emerald-300">Keerthivasan</span>
+          <span class="px-4 py-2 rounded-xl bg-white/10 border border-white/15 text-sm font-bold text-blue-300">Bishwanth</span>
+          <span class="px-4 py-2 rounded-xl bg-white/10 border border-white/15 text-sm font-bold text-purple-300">Anishraj</span>
+          <span class="px-4 py-2 rounded-xl bg-white/10 border border-white/15 text-sm font-bold text-amber-300">Livinesh</span>
+        </div>
+      </div>
+    </div>
+    <div class="text-center text-xs text-slate-500">Press [→] or [Space] to advance slides</div>
+  </section>
+
+  <!-- Slide 2: Target Audience & The Core Problem -->
+  <section class="slide p-12 sm:p-20" data-slide="2">
+    <div></div>
+    <div class="max-w-5xl mx-auto w-full space-y-6">
+      <div class="space-y-1">
+        <span class="text-xs font-bold text-blue-400 uppercase tracking-widest">Target Audience & Problem</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold display-font">The MSME Working Capital Crisis</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
+        <div class="glass-card p-6 rounded-2xl border-l-4 border-l-rose-500 space-y-3">
+          <div class="text-2xl font-bold text-rose-400">60 - 90 Days</div>
+          <h3 class="text-base font-bold text-white">Payment Delays</h3>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            In manufacturing hubs like Tiruppur, MSMEs deliver goods on Day 1 but wait 2-3 months for large buyers to clear payments.
+          </p>
+        </div>
+
+        <div class="glass-card p-6 rounded-2xl border-l-4 border-l-amber-500 space-y-3">
+          <div class="text-2xl font-bold text-amber-400">Cash Starvation</div>
+          <h3 class="text-base font-bold text-white">Daily Operational Stress</h3>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Unable to buy raw yarn, pay electricity bills, or disburse timely weekly wages to informal textile mill workers.
+          </p>
+        </div>
+
+        <div class="glass-card p-6 rounded-2xl border-l-4 border-l-blue-500 space-y-3">
+          <div class="text-2xl font-bold text-blue-400">Target Audience</div>
+          <h3 class="text-base font-bold text-white">Who We Serve</h3>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            • 4,000+ Tiruppur Knitting & Dyeing Job-workers<br>
+            • Informal textile contract labourers<br>
+            • Tier-2/3 MSME manufacturers across India
+          </p>
+        </div>
+      </div>
+
+      <div class="glass-card p-4 rounded-xl text-xs text-slate-300 flex items-center justify-between border-blue-500/30 bg-blue-500/10">
+        <span>💡 <strong>Target Clients:</strong> Sri Lakshmi Knits, Kovai Garments, Chennai Weaving Mills, and Tier-2 apparel exporters.</span>
+      </div>
+    </div>
+    <div></div>
+  </section>
+
+  <!-- Slide 3: Website & Live Platform Showcase -->
+  <section class="slide p-8 sm:p-14" data-slide="3">
+    <div></div>
+    <div class="max-w-6xl mx-auto w-full space-y-4">
+      <div class="flex items-center justify-between">
+        <div class="space-y-1">
+          <span class="text-xs font-bold text-emerald-400 uppercase tracking-widest">Live Platform Showcase</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold display-font">NOOL CREDIT Digital FinTech Portal</h2>
+        </div>
+        <div class="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+          Live Verified MSME Portal
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+        <!-- Left: Website Image Showcase -->
+        <div class="lg:col-span-7 space-y-2">
+          <div class="relative rounded-2xl overflow-hidden border border-white/20 shadow-2xl group bg-slate-950">
+            <img src="dashboard_screenshot.jpg" onerror="this.src='/dashboard_screenshot.jpg'" alt="NOOL CREDIT Live Dashboard" class="w-full h-auto object-cover rounded-2xl transition-transform duration-500 group-hover:scale-105" />
+            <div class="absolute bottom-2 left-2 right-2 p-2 rounded-xl bg-slate-900/80 backdrop-blur-md text-[11px] text-slate-300 flex items-center justify-between border border-white/10">
+              <span>📸 <strong>Live Dashboard:</strong> Personalized Greeting, KPIs (₹4.80L total value), & Quick Actions</span>
+              <span class="text-emerald-400 font-bold">Port 3000</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Core Capabilities Grid -->
+        <div class="lg:col-span-5 space-y-3">
+          <div class="glass-card p-3.5 rounded-xl space-y-1 border-l-4 border-l-blue-500">
+            <h4 class="text-xs font-bold text-white uppercase tracking-wider">1. Personalized MSME Greeting & Identity</h4>
+            <p class="text-[11px] text-slate-300">
+              Captures user name dynamically on registration (e.g. Ramesh / Keerthivasan) and renders live on the dashboard hero & avatar badge.
+            </p>
+          </div>
+
+          <div class="glass-card p-3.5 rounded-xl space-y-1 border-l-4 border-l-emerald-500">
+            <h4 class="text-xs font-bold text-white uppercase tracking-wider">2. Real-Time Financial Telemetry</h4>
+            <p class="text-[11px] text-slate-300">
+              Live calculation of total registered invoice value (₹4,80,000), 85% advance financing eligibility (₹3,83,250), and average 86/100 risk score.
+            </p>
+          </div>
+
+          <div class="glass-card p-3.5 rounded-xl space-y-1 border-l-4 border-l-purple-500">
+            <h4 class="text-xs font-bold text-white uppercase tracking-wider">3. Google Pay Style Quick Actions</h4>
+            <p class="text-[11px] text-slate-300">
+              One-tap access to invoice uploading, risk evaluation, pool bundling, financing calculator, and institutional lender approvals.
+            </p>
+          </div>
+
+          <div class="glass-card p-3.5 rounded-xl space-y-1 border-l-4 border-l-amber-500">
+            <h4 class="text-xs font-bold text-white uppercase tracking-wider">4. Inclusive Multilingual & NOOL VOICE</h4>
+            <p class="text-[11px] text-slate-300">
+              Instant UI switching across English, Tamil, and Hindi with speech synthesis for non-English factory supervisors.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div></div>
+  </section>
+
+  <!-- Slide 4: System Architecture -->
+  <section class="slide p-10 sm:p-16" data-slide="4">
+    <div></div>
+    <div class="max-w-6xl mx-auto w-full space-y-4">
+      <div class="space-y-1">
+        <span class="text-xs font-bold text-blue-400 uppercase tracking-widest">Engineering, Scalability & Security</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold display-font">End-to-End System Architecture</h2>
+      </div>
+
+      <!-- High-Level Flow Pipeline -->
+      <div class="grid grid-cols-4 gap-2 text-center text-[11px] font-bold">
+        <div class="p-2 rounded-xl bg-blue-500/20 border border-blue-500/40 text-blue-300 flex items-center justify-center gap-1">
+          <span>1. MSME / Lender Client</span>
+          <span class="text-slate-500 hidden sm:inline">→</span>
+        </div>
+        <div class="p-2 rounded-xl bg-purple-500/20 border border-purple-500/40 text-purple-300 flex items-center justify-center gap-1">
+          <span>2. Gateway & Auth (JWT)</span>
+          <span class="text-slate-500 hidden sm:inline">→</span>
+        </div>
+        <div class="p-2 rounded-xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 flex items-center justify-center gap-1">
+          <span>3. Risk Engine & Bundler</span>
+          <span class="text-slate-500 hidden sm:inline">→</span>
+        </div>
+        <div class="p-2 rounded-xl bg-amber-500/20 border border-amber-500/40 text-amber-300 flex items-center justify-center">
+          <span>4. MongoDB Cloud Atlas</span>
+        </div>
+      </div>
+
+      <!-- 3 Tier Architecture Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-1">
+        <!-- Tier 1: Frontend -->
+        <div class="glass-card p-5 rounded-2xl space-y-2 border-t-2 border-t-blue-500">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-extrabold text-blue-400 uppercase tracking-wider">Frontend Tier</span>
+            <span class="text-[10px] bg-blue-500/20 text-blue-300 px-2 py-0.5 rounded font-bold">React 18</span>
+          </div>
+          <ul class="text-[11px] text-slate-300 space-y-1.5">
+            <li>• <strong>Vite + TypeScript SPA:</strong> Instant <500ms hot-reloading</li>
+            <li>• <strong>Tailwind CSS FinTech UI:</strong> Professional dark/light themes</li>
+            <li>• <strong>i18next Engine:</strong> English, தமிழ் (Tamil), हिंदी (Hindi)</li>
+            <li>• <strong>NOOL VOICE AI:</strong> Speech Recognition & Synthesis</li>
+            <li>• <strong>Recharts & Framer Motion:</strong> Real-time financial analytics</li>
+          </ul>
+        </div>
+
+        <!-- Tier 2: Backend Microservices -->
+        <div class="glass-card p-5 rounded-2xl space-y-2 border-t-2 border-t-emerald-500">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-extrabold text-emerald-400 uppercase tracking-wider">Backend Tier</span>
+            <span class="text-[10px] bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded font-bold">Spring Boot 3</span>
+          </div>
+          <ul class="text-[11px] text-slate-300 space-y-1.5">
+            <li>• <strong>Enterprise Java 17 (Spring Boot 3.2.5):</strong> Banking REST API</li>
+            <li>• <strong>Node.js / Express Microservice:</strong> Fast client orchestration</li>
+            <li>• <strong>Stateless Spring Security:</strong> JWT Bearer Authentication</li>
+            <li>• <strong>Explainable Risk Engine (0-100):</strong> Multi-factor scoring</li>
+            <li>• <strong>Dynamic Pooling Service:</strong> Weighted risk portfolio bundler</li>
+          </ul>
+        </div>
+
+        <!-- Tier 3: Database & Cloud Storage -->
+        <div class="glass-card p-5 rounded-2xl space-y-2 border-t-2 border-t-purple-500">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-extrabold text-purple-400 uppercase tracking-wider">Database Tier</span>
+            <span class="text-[10px] bg-purple-500/20 text-purple-300 px-2 py-0.5 rounded font-bold">MongoDB Atlas</span>
+          </div>
+          <ul class="text-[11px] text-slate-300 space-y-1.5">
+            <li>• <strong>Cloud MongoDB Atlas:</strong> Auto-scaling document database</li>
+            <li>• <strong>Spring Data MongoDB:</strong> @Document, @Indexed, MongoRepo</li>
+            <li>• <strong>Collections:</strong> Invoices, Users, Pools, Requests, KYC</li>
+            <li>• <strong>Zero-Downtime Resilience:</strong> Dual cloud + in-memory failover</li>
+            <li>• <strong>Audit Ledger:</strong> Tamper-evident transaction logs</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Dedicated 3-Layer Security Architecture Component -->
+      <div class="glass-card p-4 rounded-2xl border border-emerald-500/40 bg-emerald-950/20 space-y-2">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-extrabold text-emerald-400 uppercase tracking-wider flex items-center gap-1.5">
+            🛡️ 3-Layer Anti-Fraud & Compliance Architecture (Zero Fake Invoices)
+          </span>
+          <span class="text-[10px] bg-emerald-500/20 text-emerald-300 px-2.5 py-0.5 rounded-full font-bold">RBI & GST Compliant</span>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-[11px] text-slate-300">
+          <div class="p-2.5 rounded-xl bg-white/5 border border-white/10">
+            <strong class="text-white block">1. GST Suvidha Provider (GSP)</strong>
+            Live API handshake with GSTN server validates supplier & buyer GSTIN, GSTR-1 filings, and e-Way bills.
+          </div>
+          <div class="p-2.5 rounded-xl bg-white/5 border border-white/10">
+            <strong class="text-white block">2. E-Invoice QR / IRN Validator</strong>
+            Cryptographic SHA-256 hash verification of the Invoice Reference Number directly blocks Photoshopped fake bills.
+          </div>
+          <div class="p-2.5 rounded-xl bg-white/5 border border-white/10">
+            <strong class="text-white block">3. RBI Account Aggregator (AA)</strong>
+            Direct bank-to-bank financial statement pulls verify historical buyer payment tracks with zero manual tampering.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div></div>
+  </section>
+
+  <!-- Slide 5: Business Model & Revenue -->
+  <section class="slide p-12 sm:p-20" data-slide="5">
+    <div></div>
+    <div class="max-w-5xl mx-auto w-full space-y-6">
+      <div class="space-y-1">
+        <span class="text-xs font-bold text-emerald-400 uppercase tracking-widest">Monetization Strategy</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold display-font">Sustainable Business Model</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
+        <div class="glass-card p-6 rounded-2xl space-y-3">
+          <div class="text-3xl font-extrabold text-emerald-400">1.2% - 1.8%</div>
+          <h3 class="text-base font-bold text-white">MSME Platform Discount Fee</h3>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Charged only upon successful invoice advance payout. Fair, transparent, and significantly cheaper than informal local moneylenders (36% p.a.).
+          </p>
+        </div>
+
+        <div class="glass-card p-6 rounded-2xl space-y-3">
+          <div class="text-3xl font-extrabold text-blue-400">0.5% - 1.0%</div>
+          <h3 class="text-base font-bold text-white">Lender Origination Commission</h3>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Partner NBFCs and banks pay Nool Credit for pre-verified, risk-scored invoice bundles with zero acquisition friction.
+          </p>
+        </div>
+
+        <div class="glass-card p-6 rounded-2xl space-y-3">
+          <div class="text-3xl font-extrabold text-purple-400">₹1,999 / mo</div>
+          <h3 class="text-base font-bold text-white">Enterprise GST & Analytics</h3>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Optional premium SaaS tier for large garment manufacturers needing automated Tally/ERP invoice sync and buyer credit monitoring.
+          </p>
+        </div>
+      </div>
+
+      <div class="glass-card p-5 rounded-2xl space-y-2">
+        <div class="text-xs font-bold text-slate-400 uppercase">Unit Economics Highlights:</div>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs">
+          <div><span class="text-slate-400">Gross Margin:</span> <strong class="text-white">78%+</strong></div>
+          <div><span class="text-slate-400">Avg Loan Size:</span> <strong class="text-white">₹2.5 Lakhs</strong></div>
+          <div><span class="text-slate-400">Repayment Period:</span> <strong class="text-white">60 - 90 Days</strong></div>
+          <div><span class="text-slate-400">Default Target:</span> <strong class="text-white">&lt; 0.8%</strong></div>
+        </div>
+      </div>
+    </div>
+    <div></div>
+  </section>
+
+  <!-- Slide 6: Cost Structure & Operating Economics -->
+  <section class="slide p-12 sm:p-20" data-slide="6">
+    <div></div>
+    <div class="max-w-5xl mx-auto w-full space-y-6">
+      <div class="space-y-1">
+        <span class="text-xs font-bold text-amber-400 uppercase tracking-widest">Financial Discipline</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold display-font">Cost Structure & Capital Allocation</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+        <div class="glass-card p-6 rounded-2xl space-y-3">
+          <h3 class="text-base font-bold text-white flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-blue-500"></span>
+            Technology & Infrastructure Costs
+          </h3>
+          <ul class="text-xs text-slate-300 space-y-2">
+            <li>• <strong>Cloud Database:</strong> MongoDB Atlas Serverless auto-scaling tier.</li>
+            <li>• <strong>Application Hosting:</strong> Containerized Docker / AWS ECS microservices.</li>
+            <li>• <strong>OCR & Vision Extraction:</strong> Google Cloud Document AI micro-cost per scan.</li>
+            <li>• <strong>SSL & Domain Security:</strong> Enterprise Cloudflare CDN and WAF.</li>
+          </ul>
+        </div>
+
+        <div class="glass-card p-6 rounded-2xl space-y-3">
+          <h3 class="text-base font-bold text-white flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-emerald-500"></span>
+            Verification & Compliance Fees
+          </h3>
+          <ul class="text-xs text-slate-300 space-y-2">
+            <li>• <strong>GST Suvidha Provider (GSP):</strong> ₹1.50 per invoice verification.</li>
+            <li>• <strong>Account Aggregator (AA) Pulls:</strong> ₹5 - ₹10 per bank statement consent.</li>
+            <li>• <strong>PAN & Aadhaar e-KYC:</strong> ₹2.00 per verified corporate entity.</li>
+            <li>• <strong>Legal & Institutional Escrow:</strong> Automated RBI-mandated nodal account.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="glass-card p-4 rounded-xl text-xs text-slate-300 text-center border-amber-500/30 bg-amber-500/10">
+        ⚡ <strong>Low Overhead Model:</strong> Fully automated digital origination means operating costs stay below 22% of revenue.
+      </div>
+    </div>
+    <div></div>
+  </section>
+
+  <!-- Slide 7: Government Schemes & Institutional Funds -->
+  <section class="slide p-12 sm:p-20" data-slide="7">
+    <div></div>
+    <div class="max-w-5xl mx-auto w-full space-y-6">
+      <div class="space-y-1">
+        <span class="text-xs font-bold text-blue-400 uppercase tracking-widest">Government Partnerships</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold display-font">Government Schemes & Institutional Funds</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+        <div class="glass-card p-5 rounded-xl space-y-2">
+          <div class="flex items-center justify-between">
+            <h3 class="text-sm font-bold text-white">TReDS (RBI Trade Receivables Exchange)</h3>
+            <span class="text-[10px] bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded font-bold">RBI Mandated</span>
+          </div>
+          <p class="text-xs text-slate-300">
+            Nool Credit acts as a bridge for small MSMEs ineligible for standalone TReDS onboarding by bundling sub-threshold textile invoices.
+          </p>
+        </div>
+
+        <div class="glass-card p-5 rounded-xl space-y-2">
+          <div class="flex items-center justify-between">
+            <h3 class="text-sm font-bold text-white">CGTMSE Guarantee Fund</h3>
+            <span class="text-[10px] bg-blue-500/20 text-blue-300 px-2 py-0.5 rounded font-bold">Credit Shield</span>
+          </div>
+          <p class="text-xs text-slate-300">
+            Provides partner NBFC lenders with collateral-free guarantee covers up to 85% on verified working capital advances.
+          </p>
+        </div>
+
+        <div class="glass-card p-5 rounded-xl space-y-2">
+          <div class="flex items-center justify-between">
+            <h3 class="text-sm font-bold text-white">PM Mudra Yojana (Tarun & Kishor)</h3>
+            <span class="text-[10px] bg-purple-500/20 text-purple-300 px-2 py-0.5 rounded font-bold">Micro-Credit</span>
+          </div>
+          <p class="text-xs text-slate-300">
+            Seamlessly routes lower-score job-work mills to government-subsidized micro-refinancing schemes with low interest rates.
+          </p>
+        </div>
+
+        <div class="glass-card p-5 rounded-xl space-y-2">
+          <div class="flex items-center justify-between">
+            <h3 class="text-sm font-bold text-white">Tamil Nadu NEEDS Scheme</h3>
+            <span class="text-[10px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded font-bold">State Subsidy</span>
+          </div>
+          <p class="text-xs text-slate-300">
+            Direct integration for Tamil Nadu first-generation textile entrepreneurs to claim 25% capital investment subsidies.
+          </p>
+        </div>
+      </div>
+
+      <div class="glass-card p-3 rounded-lg text-xs text-slate-400 text-center">
+        🏛️ Verified MSME profiles are automatically matched with eligible state and central subsidies inside the platform.
+      </div>
+    </div>
+    <div></div>
+  </section>
+
+  <!-- Slide 8: Clients & Strategic Partners -->
+  <section class="slide p-12 sm:p-20" data-slide="8">
+    <div></div>
+    <div class="max-w-5xl mx-auto w-full space-y-6">
+      <div class="space-y-1">
+        <span class="text-xs font-bold text-purple-400 uppercase tracking-widest">Ecosystem Participants</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold display-font">Clients & Partner Network</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
+        <div class="glass-card p-6 rounded-2xl space-y-3">
+          <div class="text-xs font-bold text-blue-400 uppercase tracking-wider">MSME Job-Workers (Suppliers)</div>
+          <div class="text-sm font-bold text-white">Sri Lakshmi Knits</div>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            • 45 Knitting Machines • Tirupur<br>
+            • Monthly Turnover: ₹35 Lakhs<br>
+            • Needs immediate cash for weekly worker wages while waiting for retail payouts.
+          </p>
+        </div>
+
+        <div class="glass-card p-6 rounded-2xl space-y-3">
+          <div class="text-xs font-bold text-amber-400 uppercase tracking-wider">Verified Corporate Buyers</div>
+          <div class="text-sm font-bold text-white">ABC Garments / Royal Exports</div>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            • Large apparel export corporations<br>
+            • Credit terms: Net 60 - 90 Days<br>
+            • Reliable GST compliance history verified by Nool Credit's GSP gateway.
+          </p>
+        </div>
+
+        <div class="glass-card p-6 rounded-2xl space-y-3">
+          <div class="text-xs font-bold text-emerald-400 uppercase tracking-wider">Institutional Lenders</div>
+          <div class="text-sm font-bold text-white">Apex FinCorp Capital / NBFCs</div>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            • Licensed NBFC capital providers<br>
+            • Looking for high-yield, short-duration MSME receivables with verified collateral.
+          </p>
+        </div>
+      </div>
+
+      <div class="glass-card p-4 rounded-xl text-center text-xs text-slate-300 border-purple-500/30 bg-purple-500/10">
+        🤝 <strong>Win-Win Network Effect:</strong> MSMEs get capital in 48 hours; Lenders get low-risk 14% IRR; Buyers preserve their 60-day cash cycle.
+      </div>
+    </div>
+    <div></div>
+  </section>
+
+  <!-- Slide 9: Demo Start to Finish -->
+  <section class="slide p-12 sm:p-20" data-slide="9">
+    <div></div>
+    <div class="max-w-5xl mx-auto w-full space-y-6">
+      <div class="space-y-1">
+        <span class="text-xs font-bold text-emerald-400 uppercase tracking-widest">Live Platform Walkthrough</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold display-font">Demo: Start to Finish (5 Steps)</h2>
+      </div>
+
+      <div class="space-y-3 pt-2">
+        <div class="glass-card p-4 rounded-xl flex items-center gap-4">
+          <div class="w-8 h-8 rounded-full bg-blue-500 text-white font-bold flex items-center justify-center shrink-0">1</div>
+          <div class="text-xs">
+            <strong class="text-white block text-sm">Personalized Login / Sign Up:</strong>
+            User signs up with custom username (e.g. Keerthivasan) or Google Sign-In. Personalized greeting and profile display immediately.
+          </div>
+        </div>
+
+        <div class="glass-card p-4 rounded-xl flex items-center gap-4">
+          <div class="w-8 h-8 rounded-full bg-emerald-500 text-white font-bold flex items-center justify-center shrink-0">2</div>
+          <div class="text-xs">
+            <strong class="text-white block text-sm">Invoice Upload & AI OCR Scanning:</strong>
+            User uploads invoice (e.g. ₹1,20,000). System runs automated extraction, checks duplicate IRN hash, and saves to cloud MongoDB.
+          </div>
+        </div>
+
+        <div class="glass-card p-4 rounded-xl flex items-center gap-4">
+          <div class="w-8 h-8 rounded-full bg-amber-500 text-white font-bold flex items-center justify-center shrink-0">3</div>
+          <div class="text-xs">
+            <strong class="text-white block text-sm">Explainable Risk Engine (Score 86/100):</strong>
+            Risk engine evaluates buyer payment history, invoice quality, and GSP records to compute safe advance rate (85%).
+          </div>
+        </div>
+
+        <div class="glass-card p-4 rounded-xl flex items-center gap-4">
+          <div class="w-8 h-8 rounded-full bg-purple-500 text-white font-bold flex items-center justify-center shrink-0">4</div>
+          <div class="text-xs">
+            <strong class="text-white block text-sm">Invoice Bundling & Pool Creation:</strong>
+            User selects 3 pending invoices (Total: ₹2,60,000) and bundles them into a unified institutional pool with diversified low risk.
+          </div>
+        </div>
+
+        <div class="glass-card p-4 rounded-xl flex items-center gap-4">
+          <div class="w-8 h-8 rounded-full bg-rose-500 text-white font-bold flex items-center justify-center shrink-0">5</div>
+          <div class="text-xs">
+            <strong class="text-white block text-sm">Lender Approval & Disbursement:</strong>
+            Switch to Lender Portal $\to$ View request $\to$ 1-Click Approve. Instant status update: "Disbursement Initiated (48h)".
+          </div>
+        </div>
+      </div>
+    </div>
+    <div></div>
+  </section>
+
+  <!-- Slide 10: Conclusion & Q&A -->
+  <section class="slide p-12 sm:p-20" data-slide="10">
+    <div></div>
+    <div class="max-w-4xl mx-auto text-center space-y-6">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-semibold uppercase tracking-wider">
+        FinTech for Financial Resilience
+      </div>
+      <h2 class="text-4xl sm:text-6xl font-extrabold display-font tracking-tight">
+        Empowering India's <span class="gradient-text">MSME Backbone</span>
+      </h2>
+      <p class="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed">
+        NOOL CREDIT turns locked paper invoices into liquid working capital—safeguarding factories against insolvency and ensuring textile workers receive their rightful wages on time.
+      </p>
+
+      <div class="glass-card p-6 rounded-2xl max-w-xl mx-auto border border-white/20">
+        <div class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">TEAM NOOL CREDIT</div>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-sm font-bold text-white">
+          <div class="p-2 bg-white/5 rounded-lg border border-white/10 text-emerald-300">Keerthivasan</div>
+          <div class="p-2 bg-white/5 rounded-lg border border-white/10 text-blue-300">Bishwanth</div>
+          <div class="p-2 bg-white/5 rounded-lg border border-white/10 text-purple-300">Anishraj</div>
+          <div class="p-2 bg-white/5 rounded-lg border border-white/10 text-amber-300">Livinesh</div>
+        </div>
+      </div>
+
+      <div class="pt-4">
+        <h3 class="text-2xl font-extrabold gold-gradient display-font">THANK YOU!</h3>
+        <p class="text-xs text-slate-400 mt-1">Ready for Questions & Live Demonstration</p>
+      </div>
+    </div>
+    <div></div>
+  </section>
+
+  <!-- Bottom Slide Controls -->
+  <footer class="fixed bottom-4 left-6 right-6 flex items-center justify-between z-40">
+    <div class="flex items-center gap-2">
+      <button onclick="prevSlide()" class="px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-bold transition-all border border-white/10 flex items-center gap-1">
+        ← Previous
+      </button>
+      <button onclick="nextSlide()" class="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition-all shadow-md flex items-center gap-1">
+        Next →
+      </button>
+    </div>
+    <div class="text-[11px] text-slate-400 hidden sm:block">
+      Tip: Press <kbd class="px-1.5 py-0.5 bg-slate-800 rounded border border-slate-700">F11</kbd> for Fullscreen Presentation Mode
+    </div>
+  </footer>
+
+  <script>
+    let currentSlide = 1;
+    const totalSlides = 10;
+
+    function showSlide(n) {
+      document.querySelectorAll('.slide').forEach(slide => slide.classList.remove('active'));
+      const target = document.querySelector(`.slide[data-slide="${n}"]`);
+      if (target) {
+        target.classList.add('active');
+        currentSlide = n;
+        document.getElementById('slide-counter').textContent = `Slide ${currentSlide} / ${totalSlides}`;
+        document.getElementById('progress-bar').style.width = `${(currentSlide / totalSlides) * 100}%`;
+      }
+    }
+
+    function nextSlide() {
+      if (currentSlide < totalSlides) showSlide(currentSlide + 1);
+    }
+
+    function prevSlide() {
+      if (currentSlide > 1) showSlide(currentSlide - 1);
+    }
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+        nextSlide();
+      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+        prevSlide();
+      }
+    });
+  </script>
+</body>
+</html>

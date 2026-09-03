@@ -25,7 +25,8 @@ import { ActivityTimeline } from '../components/dashboard/ActivityTimeline';
 import { InvoiceTable } from '../components/invoice/InvoiceTable';
 
 export const MSMEDashboard: React.FC = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const currentLang = i18n.language?.startsWith('ta') ? 'ta' : i18n.language?.startsWith('hi') ? 'hi' : 'en';
   const { invoices, requests, openVoice } = useApp();
   const { user } = useAuth();
 
@@ -76,7 +77,7 @@ export const MSMEDashboard: React.FC = () => {
             className="flex items-center gap-1.5 px-4 py-2.5 bg-brand-700/80 hover:bg-brand-600 border border-brand-500/40 text-white font-bold text-xs rounded-xl transition-all"
           >
             <Sparkles className="w-4 h-4 text-amber-300 animate-pulse" />
-            <span>Voice Assistant</span>
+            <span>{currentLang === 'ta' ? 'குரல் உதவியாளர்' : currentLang === 'hi' ? 'वॉयस असिस्टेंट' : 'Voice Assistant'}</span>
           </button>
         </div>
       </motion.div>
@@ -84,37 +85,37 @@ export const MSMEDashboard: React.FC = () => {
       {/* 4 Animated Financial Summary Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <AnimatedKPI
-          title="TOTAL INVOICE VALUE"
+          title={t('dashboard.totalInvoices', 'TOTAL INVOICE VALUE').toUpperCase()}
           value={totalInvoiceValue}
           isCurrency
           icon={FileSpreadsheet}
-          changeText="+14% this month"
+          changeText={currentLang === 'ta' ? '+14% இந்த மாதம்' : currentLang === 'hi' ? '+14% इस महीने' : '+14% this month'}
           colorScheme="blue"
           delay={0.1}
         />
         <AnimatedKPI
-          title="FINANCING ELIGIBLE"
+          title={t('dashboard.eligibleFinancing', 'FINANCING ELIGIBLE').toUpperCase()}
           value={totalEligible}
           isCurrency
           icon={Coins}
-          changeText="85% Max Advance"
+          changeText={currentLang === 'ta' ? '85% அதிகபட்ச நிதி' : currentLang === 'hi' ? '85% अधिकतम अग्रिम' : '85% Max Advance'}
           colorScheme="emerald"
           delay={0.2}
         />
         <AnimatedKPI
-          title="AVERAGE RISK SCORE"
+          title={t('dashboard.avgRiskScore', 'AVERAGE RISK SCORE').toUpperCase()}
           value={86}
           suffix="/100"
           icon={ShieldCheck}
-          changeText="Low Risk Rating"
+          changeText={currentLang === 'ta' ? 'குறைந்த இடர்' : currentLang === 'hi' ? 'कम जोखिम रेटिंग' : 'Low Risk Rating'}
           colorScheme="amber"
           delay={0.3}
         />
         <AnimatedKPI
-          title="ACTIVE REQUESTS"
+          title={t('dashboard.activeRequests', 'ACTIVE REQUESTS').toUpperCase()}
           value={activeRequestsCount}
           icon={Send}
-          changeText="Under Lender Review"
+          changeText={currentLang === 'ta' ? 'மதிப்பாய்வில் உள்ளது' : currentLang === 'hi' ? 'समीक्षाधीन' : 'Under Lender Review'}
           colorScheme="purple"
           delay={0.4}
         />
@@ -141,14 +142,20 @@ export const MSMEDashboard: React.FC = () => {
         <div className="lg:col-span-8 space-y-4">
           <div className="flex items-center justify-between">
             <div>
-              <h3 className="text-base font-bold text-slate-900">Recent Registered Invoices</h3>
-              <p className="text-xs text-slate-400">Manage and bundle pending receivables</p>
+              <h3 className="text-base font-bold text-slate-900">
+                {currentLang === 'ta' ? 'சமீபத்திய விலைப்பட்டியல்கள்' : currentLang === 'hi' ? 'हालिया पंजीकृत इनवॉइस' : 'Recent Registered Invoices'}
+              </h3>
+              <p className="text-xs text-slate-400">
+                {currentLang === 'ta' ? 'நிலுவையில் உள்ள தொகைகளை நிர்வகிக்கவும் மற்றும் தொகுக்கவும்' : currentLang === 'hi' ? 'लंबित प्राप्य राशि का प्रबंधन और बंडल करें' : 'Manage and bundle pending receivables'}
+              </p>
             </div>
             <Link
               to="/invoices"
               className="text-xs font-bold text-brand-600 hover:text-brand-700 flex items-center gap-1"
             >
-              <span>View All ({invoices.length})</span>
+              <span>
+                {currentLang === 'ta' ? `அனைத்தும் காண்க (${invoices.length})` : currentLang === 'hi' ? `सभी देखें (${invoices.length})` : `View All (${invoices.length})`}
+              </span>
               <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>
