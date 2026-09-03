@@ -1,18 +1,18 @@
 package com.noolcredit.entity;
 
-import jakarta.persistence.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-@Entity
-@Table(name = "invoices")
+@Document(collection = "invoices")
 public class Invoice {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
-    @Column(nullable = false, unique = true)
+    @Indexed(unique = true)
     private String invoiceNumber;
 
     private String msmeId;

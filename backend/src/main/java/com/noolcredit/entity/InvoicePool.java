@@ -1,17 +1,17 @@
 package com.noolcredit.entity;
 
-import jakarta.persistence.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
 import java.time.LocalDateTime;
 
-@Entity
-@Table(name = "invoice_pools")
+@Document(collection = "invoice_pools")
 public class InvoicePool {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
-    @Column(nullable = false, unique = true)
+    @Indexed(unique = true)
     private String poolNumber;
 
     private String msmeId;

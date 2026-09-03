@@ -1,11 +1,11 @@
 package com.noolcredit.entity;
 
-import jakarta.persistence.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 import lombok.*;
 import java.time.LocalDateTime;
 
-@Entity
-@Table(name = "notifications")
+@Document(collection = "notifications")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -15,26 +15,15 @@ public class Notification {
     @Id
     private String id;
 
-    @Column(name = "user_id", nullable = false)
     private String userId;
 
-    @Column(nullable = false)
     private String title;
 
-    @Column(nullable = false, columnDefinition = "TEXT")
     private String message;
 
-    @Column(name = "read_status")
     @Builder.Default
     private Boolean readStatus = false;
 
-    @Column(name = "created_at")
-    private LocalDateTime createdAt;
-
-    @PrePersist
-    public void prePersist() {
-        if (this.createdAt == null) {
-            this.createdAt = LocalDateTime.now();
-        }
-    }
+    @Builder.Default
+    private LocalDateTime createdAt = LocalDateTime.now();
 }

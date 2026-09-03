@@ -5,25 +5,10 @@ spring:
   application:
     name: nool-credit-backend
   
-  # Default to embedded H2 for plug-and-play hackathon execution (can connect to postgresql seamlessly)
-  datasource:
-    url: ${SPRING_DATASOURCE_URL:jdbc:h2:mem:nool_credit_db;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;MODE=PostgreSQL}
-    username: ${SPRING_DATASOURCE_USERNAME:sa}
-    password: ${SPRING_DATASOURCE_PASSWORD:}
-    driver-class-name: ${SPRING_DATASOURCE_DRIVER:org.h2.Driver}
-
-  jpa:
-    hibernate:
-      ddl-auto: update
-    show-sql: false
-    properties:
-      hibernate:
-        format_sql: false
-
-  h2:
-    console:
-      enabled: true
-      path: /h2-console
+  data:
+    mongodb:
+      uri: ${SPRING_DATA_MONGODB_URI:mongodb://localhost:27017/nool_credit_db}
+      auto-index-creation: true
 
 app:
   jwt:

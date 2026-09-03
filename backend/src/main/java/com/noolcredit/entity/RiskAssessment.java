@@ -1,13 +1,12 @@
 package com.noolcredit.entity;
 
-import jakarta.persistence.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-@Entity
-@Table(name = "risk_assessments")
+@Document(collection = "risk_assessments")
 public class RiskAssessment {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
     private String invoiceId;

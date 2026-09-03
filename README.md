@@ -7,7 +7,7 @@
 [![Tailwind CSS](https://img.shields.io/badge/TailwindCSS-3.4-38bdf8.svg)](https://tailwindcss.com/)
 [![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.2.5-brightgreen.svg)](https://spring.io/projects/spring-boot)
 [![Java](https://img.shields.io/badge/Java-17-orange.svg)](https://www.oracle.com/java/)
-[![PostgreSQL / H2](https://img.shields.io/badge/Database-PostgreSQL%20%2F%20H2-blue.svg)](https://www.postgresql.org/)
+[![MongoDB](https://img.shields.io/badge/Database-MongoDB-green.svg)](https://www.mongodb.com/)
 [![Multi-Language](https://img.shields.io/badge/Languages-EN%20%7C%20%E0%AE%A4%E0%AE%AE%E0%AE%BF%E0%AE%B4%E0%AF%8D%20%7C%20%E0%A4%B9%E0%A4%BF%E0%A4%82%E0%A4%A6%E0%A4%80-purple.svg)]()
 
 ---
@@ -58,6 +58,44 @@ $$\text{Upload Invoice} \longrightarrow \text{GST Verify} \longrightarrow \text{
 - Visual journey tracker: $\text{Aadhaar} \to \text{PAN} \to \text{Bank} \to \text{Business} \to \text{Documents} \to \text{KYC Complete ✓}$
 - Sensitive data masked by default: Aadhaar (`XXXX XXXX 4521`), PAN (`XXXXX1234X`), Bank (`XXXX XXXX 8892`).
 - Global **Show / Hide Balance** toggle.
+
+---
+
+## 🏗️ 3. Architecture & Tech Stack
+
+```
+nool-credit/
+├── backend/          # Enterprise Java 17 + Spring Boot 3 + Spring Data MongoDB REST API
+├── server/           # Lightweight Node.js + Express + Mongoose (Fast Hackathon Execution)
+├── frontend/         # React 18 + TypeScript + Vite + Tailwind CSS + Framer Motion
+```
+
+### Backend (Java + MongoDB)
+- **Framework:** Spring Boot 3.2.5 (Java 17)
+- **Database:** MongoDB (`spring-boot-starter-data-mongodb`)
+- **Security:** Spring Security + JWT Authentication (`jjwt`)
+- **Validation:** Jakarta Validation (`spring-boot-starter-validation`)
+- **Object Mapping:** Spring Data MongoDB `@Document`, `@Id`, `@Indexed`
+
+---
+
+## 🚀 4. How to Run
+
+### Option A: Quick Hackathon Demo (Node/Express + Vite)
+```bash
+npm install
+npm run dev
+```
+Starts frontend at `http://localhost:3000` and API at `http://localhost:5000`.
+
+### Option B: Java Spring Boot + MongoDB Backend
+1. Ensure MongoDB is running on `mongodb://localhost:27017`
+2. Start the Spring Boot backend:
+```bash
+cd backend
+mvn spring-boot:run
+```
+Spring Boot API runs at `http://localhost:8080`.
 
 ### 📦 Dynamic Invoice Pooling & Live Bundler
 - Multi-select invoices to create diversified risk pools with live weighted score calculation ($₹2,60,000 \implies 82/100 \implies ₹2,08,000$ recommended capital at 80-85%).

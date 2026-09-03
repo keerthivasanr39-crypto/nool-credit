@@ -31,10 +31,9 @@ public class SecurityConfig {
             .cors(cors -> cors.configurationSource(corsConfigurationSource()))
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/api/**", "/h2-console/**", "/error").permitAll()
+                .requestMatchers("/api/**", "/error", "/swagger-ui/**", "/v3/api-docs/**").permitAll()
                 .anyRequest().permitAll()
-            )
-            .headers(headers -> headers.frameOptions(frame -> frame.disable())); // Allow H2 console frames
+            );
 
         return http.build();
     }
