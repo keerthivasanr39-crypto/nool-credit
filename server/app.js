@@ -1,5 +1,7 @@
 const express = require('express');
 const cors = require('cors');
+const mongoose = require('mongoose');
+const Invoice = require('./models/Invoice');
 
 const app = express();
 
@@ -307,6 +309,45 @@ const memoryStore = {
   ]
 };
 
+// Auto-seed initial demo invoices into MongoDB Atlas if empty
+const syncDemoDataToMongo = async () => {
+  try {
+    if (mongoose.connection.readyState === 1) {
+      const count = await Invoice.countDocuments();
+      if (count === 0 && memoryStore.invoices.length > 0) {
+        console.log('🌱 Populating demo invoices into MongoDB Atlas (nool_credit_db)...');
+        await Invoice.insertMany(
+          memoryStore.invoices.map((inv) => ({
+            invoiceId: inv.id,
+            invoiceNumber: inv.invoiceNumber,
+            msmeId: inv.msmeId || 'usr-msme-01',
+            buyerName: inv.buyerName,
+            buyerBusinessId: inv.buyerBusinessId || 'BUY-001',
+            invoiceAmount: inv.invoiceAmount,
+            invoiceDate: inv.invoiceDate,
+            dueDate: inv.dueDate,
+            paymentTerms: inv.paymentTerms || 'Net 60 Days',
+            verificationStatus: inv.verificationStatus || 'VERIFIED',
+            verificationScore: inv.verificationScore || 95,
+            riskScore: inv.riskScore || 85,
+            riskLevel: inv.riskLevel || 'LOW',
+            eligibleFinancing: inv.eligibleFinancing || Math.round(inv.invoiceAmount * 0.85),
+            status: inv.status || 'VERIFIED',
+          }))
+        );
+        console.log('✨ Successfully populated invoices into MongoDB Atlas nool_credit_db!');
+      }
+    }
+  } catch (err) {
+    console.warn('Initial Mongo sync warning:', err.message);
+  }
+};
+
+mongoose.connection.on('connected', syncDemoDataToMongo);
+if (mongoose.connection.readyState === 1) {
+  syncDemoDataToMongo();
+}
+
 // Health endpoint
 app.get('/api/health', (req, res) => {
   res.json({
@@ -350,11 +391,41 @@ app.put('/api/profile', (req, res) => {
 });
 
 // Invoices endpoints
-app.get('/api/invoices', (req, res) => {
+app.get('/api/invoices', async (req, res) => {
+  try {
+    if (mongoose.connection.readyState === 1) {
+      const dbInvoices = await Invoice.find().sort({ createdAt: -1 });
+      if (dbInvoices && dbInvoices.length > 0) {
+        return res.json(
+          dbInvoices.map((inv) => ({
+            id: inv.invoiceId || inv._id.toString(),
+            invoiceNumber: inv.invoiceNumber,
+            msmeId: inv.msmeId,
+            buyerName: inv.buyerName,
+            buyerBusinessId: inv.buyerBusinessId,
+            buyerGst: '33AABCA1234F1Z8',
+            invoiceAmount: inv.invoiceAmount,
+            invoiceDate: inv.invoiceDate,
+            dueDate: inv.dueDate,
+            paymentTerms: inv.paymentTerms,
+            verificationStatus: inv.verificationStatus,
+            verificationScore: inv.verificationScore,
+            riskScore: inv.riskScore,
+            riskLevel: inv.riskLevel,
+            eligibleFinancing: inv.eligibleFinancing,
+            status: inv.status,
+            notes: inv.notes,
+          }))
+        );
+      }
+    }
+  } catch (err) {
+    console.warn('Mongo fetch notice:', err.message);
+  }
   res.json(memoryStore.invoices);
 });
 
-app.post('/api/invoices', (req, res) => {
+app.post('/api/invoices', async (req, res) => {
   const { invoiceNumber, invoiceAmount, buyerName, dueDate, invoiceDate } = req.body;
 
   // Duplicate invoice check
@@ -383,6 +454,33 @@ app.post('/api/invoices', (req, res) => {
   };
 
   memoryStore.invoices.unshift(newInvoice);
+
+  // Persist directly to MongoDB Atlas
+  if (mongoose.connection.readyState === 1) {
+    try {
+      await Invoice.create({
+        invoiceId: newInvoice.id,
+        invoiceNumber: newInvoice.invoiceNumber,
+        msmeId: newInvoice.msmeId,
+        buyerName: newInvoice.buyerName,
+        buyerBusinessId: newInvoice.buyerBusinessId,
+        invoiceAmount: newInvoice.invoiceAmount,
+        invoiceDate: newInvoice.invoiceDate,
+        dueDate: newInvoice.dueDate,
+        paymentTerms: newInvoice.paymentTerms,
+        verificationStatus: newInvoice.verificationStatus,
+        verificationScore: newInvoice.verificationScore,
+        riskScore: newInvoice.riskScore,
+        riskLevel: newInvoice.riskLevel,
+        eligibleFinancing: newInvoice.eligibleFinancing,
+        status: newInvoice.status,
+        notes: newInvoice.notes,
+      });
+      console.log(`💾 Saved invoice ${newInvoice.invoiceNumber} to MongoDB Atlas!`);
+    } catch (dbErr) {
+      console.warn('MongoDB write notice:', dbErr.message);
+    }
+  }
 
   memoryStore.notifications.unshift({
     id: `notif-${Date.now()}`,
