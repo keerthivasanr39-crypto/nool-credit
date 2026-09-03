@@ -7,6 +7,7 @@ import { Footer } from './components/common/Footer';
 import { MobileNav } from './components/common/MobileNav';
 import { DemoBanner } from './components/common/DemoBanner';
 import { VoiceModal } from './components/common/VoiceModal';
+import { AIChatbot } from './components/common/AIChatbot';
 
 import { LandingPage } from './pages/LandingPage';
 import { AuthPage } from './pages/AuthPage';
@@ -42,6 +43,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
       <Footer />
       <MobileNav />
       <VoiceModal />
+      <AIChatbot />
     </div>
   );
 };

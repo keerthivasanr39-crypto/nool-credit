@@ -14,7 +14,9 @@ import {
   LogOut,
   User,
   Menu,
-  X
+  X,
+  Bot,
+  Sparkles
 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { useApp } from '../../context/AppContext';
@@ -23,7 +25,8 @@ import { NotificationCenter } from './NotificationCenter';
 import { PrivacyToggleBtn } from './PrivacyMask';
 
 export const Navbar: React.FC = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const currentLang = i18n.language?.startsWith('ta') ? 'ta' : i18n.language?.startsWith('hi') ? 'hi' : 'en';
   const { user, role, logout } = useAuth();
   const { openVoice } = useApp();
   const location = useLocation();
@@ -32,12 +35,15 @@ export const Navbar: React.FC = () => {
 
   const isMSME = role === 'MSME';
 
+  const aiLabel = currentLang === 'ta' ? 'AI சாட்' : currentLang === 'hi' ? 'AI चैट' : 'AI Chat';
+
   const msmeNavLinks = [
     { name: t('nav.dashboard'), path: '/dashboard', icon: LayoutDashboard },
     { name: t('nav.invoices'), path: '/invoices', icon: FileText },
     { name: t('nav.invoicePool'), path: '/pool', icon: Boxes },
     { name: t('nav.eligibility'), path: '/eligibility', icon: ShieldCheck },
     { name: t('nav.calculator'), path: '/calculator', icon: Calculator },
+    { name: aiLabel, path: '/ai-assistant', icon: Bot },
     { name: t('nav.history'), path: '/history', icon: History },
   ];
 
