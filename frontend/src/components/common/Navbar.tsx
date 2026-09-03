@@ -119,21 +119,25 @@ export const Navbar: React.FC = () => {
             <NotificationCenter />
 
             {/* User Profile Pill / Logout */}
-            <div className="hidden sm:flex items-center gap-2 pl-2 border-l border-slate-200">
-              <div className="flex flex-col text-right">
-                <span className="text-xs font-bold text-slate-800 leading-tight">
-                  {user?.businessName || user?.name || 'Sri Lakshmi Knits'}
+            <div className="hidden sm:flex items-center gap-2.5 pl-2 border-l border-slate-200">
+              <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-brand-700 to-blue-600 text-white font-extrabold text-xs flex items-center justify-center shadow-xs uppercase">
+                {(user?.name || 'K').charAt(0)}
+              </div>
+              <div className="flex flex-col text-left">
+                <span className="text-xs font-extrabold text-slate-900 leading-tight">
+                  {user?.name || 'Karthik Subramanian'}
                 </span>
-                <span className="text-[10px] text-slate-400 font-medium capitalize">
-                  {role} Portal
+                <span className="text-[10px] text-slate-500 font-semibold truncate max-w-[140px]">
+                  {user?.businessName || 'Sri Lakshmi Knits'}
                 </span>
               </div>
               <button
                 onClick={handleLogout}
-                className="p-1.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-colors"
+                className="flex items-center gap-1.5 px-3 py-1.5 ml-1 text-rose-600 hover:text-white hover:bg-rose-600 rounded-lg transition-colors font-bold text-xs border border-rose-200 bg-rose-50/60 shadow-xs"
                 title={t('nav.logout')}
               >
-                <LogOut className="w-4 h-4" />
+                <LogOut className="w-3.5 h-3.5" />
+                <span>Logout</span>
               </button>
             </div>
 

@@ -16,6 +16,7 @@ import {
   Clock
 } from 'lucide-react';
 import { useApp } from '../context/AppContext';
+import { useAuth } from '../context/AuthContext';
 import { AnimatedKPI } from '../components/dashboard/AnimatedKPI';
 import { QuickActions } from '../components/dashboard/QuickActions';
 import { NoolBusinessScoreCard } from '../components/dashboard/NoolBusinessScoreCard';
@@ -26,6 +27,7 @@ import { InvoiceTable } from '../components/invoice/InvoiceTable';
 export const MSMEDashboard: React.FC = () => {
   const { t } = useTranslation();
   const { invoices, requests, openVoice } = useApp();
+  const { user } = useAuth();
 
   const totalInvoiceValue = invoices.reduce((acc, inv) => acc + inv.invoiceAmount, 0) || 480000;
   const totalEligible = invoices.reduce((acc, inv) => acc + inv.eligibleFinancing, 0) || 390000;
@@ -48,14 +50,16 @@ export const MSMEDashboard: React.FC = () => {
               <Sparkles className="w-3 h-3 text-amber-400" />
               Verified MSME Portal
             </span>
-            <span className="text-[11px] text-slate-300">Tirupur Textile Cluster</span>
+            <span className="text-[11px] text-slate-300 font-medium">
+              {user?.businessName || 'Sri Lakshmi Knits'} • Tirupur Cluster
+            </span>
           </div>
 
           <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
-            Good Morning, Sri Lakshmi Knits 👋
+            Good Morning, {user?.name || 'User'} 👋
           </h1>
           <p className="text-xs sm:text-sm text-brand-200 max-w-xl">
-            Your business financial health is looking strong. 3 invoices are ready for working capital pooling.
+            Welcome back, <strong className="text-white font-semibold">{user?.name || 'User'}</strong>. Your business financial health is looking strong. 3 invoices are ready for working capital pooling.
           </p>
         </div>
 

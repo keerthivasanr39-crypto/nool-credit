@@ -44,6 +44,20 @@ export const ProfilePage: React.FC = () => {
 
   const [savedSuccess, setSavedSuccess] = useState(false);
 
+  React.useEffect(() => {
+    if (user) {
+      setProfile((prev) => ({
+        ...prev,
+        userId: user.id || prev.userId,
+        businessName: user.businessName || prev.businessName,
+        bankDetails: {
+          ...prev.bankDetails,
+          accountName: `${user.businessName || 'Sri Lakshmi Knits'} Pvt Ltd`,
+        },
+      }));
+    }
+  }, [user]);
+
   const handleSave = (e: React.FormEvent) => {
     e.preventDefault();
     setSavedSuccess(true);
@@ -84,6 +98,26 @@ export const ProfilePage: React.FC = () => {
           </h3>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+            <div className="space-y-1">
+              <label className="text-slate-300 font-medium">Account Owner / Full Name</label>
+              <input
+                type="text"
+                disabled
+                value={user?.name || 'Karthik Subramanian'}
+                className="w-full px-3.5 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-slate-400 cursor-not-allowed"
+              />
+            </div>
+
+            <div className="space-y-1">
+              <label className="text-slate-300 font-medium">Registered Email</label>
+              <input
+                type="text"
+                disabled
+                value={user?.email || 'msme@noolcredit.com'}
+                className="w-full px-3.5 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-slate-400 cursor-not-allowed"
+              />
+            </div>
+
             <div className="space-y-1">
               <label className="text-slate-300 font-medium">Business / Mill Name</label>
               <input

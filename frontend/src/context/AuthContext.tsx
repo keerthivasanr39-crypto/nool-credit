@@ -5,7 +5,7 @@ interface AuthContextType {
   user: User | null;
   role: UserRole;
   isAuthenticated: boolean;
-  login: (email: string, role: UserRole) => void;
+  login: (email: string, role: UserRole, customName?: string, customBusiness?: string) => void;
   logout: () => void;
   switchRole: (newRole: UserRole) => void;
 }
@@ -51,11 +51,47 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   }, [user]);
 
-  const login = (email: string, selectedRole: UserRole) => {
+  const login = (email: string, selectedRole: UserRole, customName?: string, customBusiness?: string) => {
+    // Derive a clean name from the email/username input
+    const cleanInput = (email || '').trim();
+    let fallbackName = cleanInput;
+    if (fallbackName.includes('@')) {
+      fallbackName = fallbackName.split('@')[0].replace(/[._-]/g, ' ');
+    }
+    fallbackName = fallbackName.replace(/\b\w/g, (l) => l.toUpperCase());
+
+    const finalName =
+      customName && customName.trim()
+        ? customName.trim()
+        : fallbackName && fallbackName.toLowerCase() !== 'demo.msme'
+        ? fallbackName
+        : selectedRole === 'LENDER'
+        ? DEMO_LENDER_USER.name
+        : DEMO_MSME_USER.name;
+
+    const finalBusiness =
+      customBusiness && customBusiness.trim()
+        ? customBusiness.trim()
+        : fallbackName && fallbackName.toLowerCase() !== 'demo.msme'
+        ? `${finalName} Textiles`
+        : selectedRole === 'LENDER'
+        ? DEMO_LENDER_USER.businessName
+        : DEMO_MSME_USER.businessName;
+
     if (selectedRole === 'LENDER') {
-      setUser({ ...DEMO_LENDER_USER, email });
+      setUser({
+        ...DEMO_LENDER_USER,
+        email: cleanInput,
+        name: finalName,
+        businessName: finalBusiness,
+      });
     } else {
-      setUser({ ...DEMO_MSME_USER, email });
+      setUser({
+        ...DEMO_MSME_USER,
+        email: cleanInput,
+        name: finalName,
+        businessName: finalBusiness,
+      });
     }
   };
 
